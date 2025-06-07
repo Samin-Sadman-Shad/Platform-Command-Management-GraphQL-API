@@ -11,5 +11,13 @@ namespace CommanderGQL.Persistance
         }
 
         public DbSet<Platform> Platforms { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Platform>()
+                .Property(e => e.Id)
+                .HasDefaultValueSql("NEWSEQUENTIALID()");
+        }
     }
 }
