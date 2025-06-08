@@ -2,17 +2,20 @@ using CommanderGQL.GraphQL;
 using CommanderGQL.Persistance;
 using Microsoft.EntityFrameworkCore;
 using GraphQL.Server.Ui.Voyager;
+using HotChocolate;
+using HotChocolate.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<CommanderDbContext>(options =>
-//            options.UseSqlServer(builder.Configuration.GetConnectionString("CommanderConnectionString")));
-
-builder.Services.AddPooledDbContextFactory<CommanderDbContext>(options =>
+builder.Services.AddDbContext<CommanderDbContext>(options =>
             options.UseSqlServer(builder.Configuration.GetConnectionString("CommanderConnectionString")));
 
+//builder.Services.AddPooledDbContextFactory<CommanderDbContext>(options =>
+//            options.UseSqlServer(builder.Configuration.GetConnectionString("CommanderConnectionString")));
+
 builder.Services.AddGraphQLServer()
-    .AddQueryType<Query>();
+    .AddQueryType<Query>().AddProjections();
+
 
 
 var app = builder.Build();
