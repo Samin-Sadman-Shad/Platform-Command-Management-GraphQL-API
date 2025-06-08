@@ -15,9 +15,9 @@ namespace CommanderGQL.GraphQL.Types
 
         private class Resolver
         {
-            public IQueryable<Platform> GetPlatform([Parent] Command command, [Service] CommanderDbContext dbContext)
+            public Platform GetPlatform([Parent] Command command, [Service] CommanderDbContext dbContext)
             {
-                return dbContext.Platforms.Where(platform => platform.Id == command.PlatformId);
+                return dbContext.Platforms.FirstOrDefault(platform => platform.Id == command.PlatformId);
             }
         }
 

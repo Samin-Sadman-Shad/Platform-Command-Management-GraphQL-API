@@ -10,12 +10,16 @@ namespace CommanderGQL.GraphQL
     public class Query
     {
         //[UseProjection]
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Platform> GetPlatforms([Service] CommanderDbContext dbContext)
         {
             return dbContext.Platforms;
         }
 
         //[UseProjection]
+        [UseFiltering]
+        [UseSorting]
         public IQueryable<Command> GetCommand([Service] CommanderDbContext dbContext)
         {
             return dbContext.Commands;

@@ -17,7 +17,9 @@ builder.Services.AddDbContext<CommanderDbContext>(options =>
 builder.Services.AddGraphQLServer()
     .AddQueryType<Query>()
     .AddType<PlatformType>()
-    .AddType<CommandType>();
+    .AddType<CommandType>()
+    .AddFiltering()
+    .AddSorting();
     //.AddProjections();
 
 
