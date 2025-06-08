@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using GraphQL.Server.Ui.Voyager;
 using HotChocolate;
 using HotChocolate.Data;
+using CommanderGQL.GraphQL.Types;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,7 +15,10 @@ builder.Services.AddDbContext<CommanderDbContext>(options =>
 //            options.UseSqlServer(builder.Configuration.GetConnectionString("CommanderConnectionString")));
 
 builder.Services.AddGraphQLServer()
-    .AddQueryType<Query>().AddProjections();
+    .AddQueryType<Query>()
+    .AddType<PlatformType>()
+    .AddType<CommandType>();
+    //.AddProjections();
 
 
 
