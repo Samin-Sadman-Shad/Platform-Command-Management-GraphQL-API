@@ -19,8 +19,10 @@ builder.Services.AddGraphQLServer()
     .AddType<PlatformType>()
     .AddType<CommandType>()
     .AddMutationType<Mutation>()
+    .AddSubscriptionType<Subscription>()
     .AddFiltering()
-    .AddSorting();
+    .AddSorting()
+    .AddInMemorySubscriptions();
     //.AddProjections();
 
 
@@ -31,6 +33,7 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
+app.UseWebSockets();
 app.UseRouting();
 
 /*app.MapGet("/", () => "Hello World!");*/
